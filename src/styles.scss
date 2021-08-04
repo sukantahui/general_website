@@ -10965,24 +10965,7 @@ html {
   transition: all 0.4s ease 0s;
 }
 
-.menu-toggle {
-  position: fixed;
-  right: 15px;
-  top: 15px;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  color: #fff;
-  background: rgba(52, 58, 64, 0.5);
-  line-height: 50px;
-  z-index: 999;
-}
-.menu-toggle:focus, .menu-toggle:hover {
-  color: #fff;
-}
-.menu-toggle:hover {
-  background: #343a40;
-}
+
 
 .btn-xl {
   padding: 1.25rem 2.5rem;
