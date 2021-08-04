@@ -54,6 +54,8 @@ const routes: Routes = [
   { path: 'MenuStudent', loadChildren: () => import('./pages/home/menu/menu-student/menu-student.module').then(m => m.MenuStudentModule) },
 
   { path: 'header', loadChildren: () => import('./pages/header/header.module').then(m => m.HeaderModule) },
+
+  { path: 'AosTest', loadChildren: () => import('./pages/home/aos-test/aos-test.module').then(m => m.AosTestModule) },
   // { path: 'auth', loadChildren: () => import('./pages/home/auth/auth.module').then(m => m.AuthModule) },
   // { path: '404', loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) },
   // { path: '**', redirectTo: '/404'}

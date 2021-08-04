@@ -17,7 +17,7 @@ import * as AOS from 'aos';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy{
-  title = 'Portfolio';
+  title = 'General';
   active = 1;
   events: string[] = [];
   opened: boolean;
@@ -31,7 +31,6 @@ export class AppComponent implements OnInit, OnDestroy{
   private scrollOffset = 70;
   @HostListener('window:scroll')
   onWindowScroll() {
-    console.log(window.pageYOffset);
     this.navFixed = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) > this.scrollOffset;
   }
 
