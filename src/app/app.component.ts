@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { faBaby } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,6 +27,13 @@ export class AppComponent implements OnInit, OnDestroy{
   deviceXs: boolean;
 
   direction = 'row';
+  navFixed = false;
+  private scrollOffset = 70;
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    console.log(window.pageYOffset);
+    this.navFixed = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) > this.scrollOffset;
+  }
 
   toggleDirection() {
     const next = (DIRECTIONS.indexOf(this.direction) + 1 ) % DIRECTIONS.length;
