@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {formatDate} from '@angular/common';
 import {ServerResponse} from '../models/ServerResponse.model';
 import {environment} from '../../environments/environment';
-import {concatMap, tap} from "rxjs/operators";
+import {concatMap, tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -14,7 +14,9 @@ import {concatMap, tap} from "rxjs/operators";
 // @ts-ignore
 export class CommonService {
 
-
+  isDrawerOpen = false;
+  isDrawerOpenSubject = new Subject<boolean>();
+  
   value$ = new BehaviorSubject(20);
   currentValue = 0;
 
@@ -73,4 +75,13 @@ export class CommonService {
     this.value$.next(this.currentValue);
     console.log(this.currentValue);
   }
+
+  getDrawerOpenListener(){
+    return this.isDrawerOpenSubject.asObservable();
+  }
+  toggleDrawer(){
+    this.isDrawerOpen = !this.isDrawerOpen;
+    console.log(this.isDrawerOpen);
+  }
+
 }

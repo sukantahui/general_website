@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {CommonService} from '../../services/common.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor( private activatedRoute: ActivatedRoute) { }
+  constructor( private activatedRoute: ActivatedRoute, public commonService: CommonService) { }
 
   ngOnInit(): void {
     // this.jumpTo('portfolio');
