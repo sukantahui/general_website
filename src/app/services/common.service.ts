@@ -14,7 +14,7 @@ import {concatMap, tap} from 'rxjs/operators';
 // @ts-ignore
 export class CommonService {
 
-  isDrawerOpen = false;
+  private isDrawerOpen = false;
   isDrawerOpenSubject = new Subject<boolean>();
   
   value$ = new BehaviorSubject(20);
@@ -76,12 +76,13 @@ export class CommonService {
     console.log(this.currentValue);
   }
 
-  getDrawerOpenListener(){
+  getIsDrawerOpenListener(){
     return this.isDrawerOpenSubject.asObservable();
   }
+  
   toggleDrawer(){
     this.isDrawerOpen = !this.isDrawerOpen;
-    console.log(this.isDrawerOpen);
+    this.isDrawerOpenSubject.next(this.isDrawerOpen);
   }
 
 }

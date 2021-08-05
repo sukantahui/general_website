@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import Swal from 'sweetalert2';
 import {ActivatedRoute} from '@angular/router';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,13 @@ import {ActivatedRoute} from '@angular/router';
 export class HomeComponent implements OnInit {
   showFiller = false;
   showLogin = false;
-  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute) {}
+  // to access local reference #drawer from ts file I am using @ViewChild
+  @ViewChild('drawer', { static: true }) drawer: any;
+  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute, public commonService: CommonService) {
+    this.commonService.getIsDrawerOpenListener().subscribe((res: boolean)=>{
+        this.drawer.toggle();
+    });
+  }
 
   ngOnInit(): void {
 
