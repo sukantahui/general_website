@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     // this.jumpTo('portfolio');
     this.activatedRoute.fragment.subscribe(res => {
-      console.log(res);
     });
   }
   jumpTo(section){

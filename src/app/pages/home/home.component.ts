@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   // to access local reference #drawer from ts file I am using @ViewChild
   @ViewChild('drawer', { static: true }) drawer: any;
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute, public commonService: CommonService) {
-    this.commonService.getIsDrawerOpenListener().subscribe((res: boolean)=>{
+    this.commonService.getIsDrawerOpenListener().subscribe((res: boolean) => {
         this.drawer.toggle();
     });
   }
