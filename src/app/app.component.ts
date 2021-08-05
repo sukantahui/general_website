@@ -10,6 +10,7 @@ import {CanonicalService} from './services/canonical.service';
 import {CommonService} from './services/common.service';
 import {AuthService} from './services/auth.service';
 import * as AOS from 'aos';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,6 @@ import * as AOS from 'aos';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy{
-  title = 'General';
   active = 1;
   events: string[] = [];
   opened: boolean;
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy{
   direction = 'row';
   navFixed = false;
   private scrollOffset = 70;
+  private projectData: any;
   @HostListener('window:scroll')
   onWindowScroll() {
     this.navFixed = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) > this.scrollOffset;
@@ -48,23 +49,25 @@ export class AppComponent implements OnInit, OnDestroy{
               // tslint:disable-next-line:align
               , private commonService: CommonService
               // tslint:disable-next-line:align
-              , private authService: AuthService)
-  {
+              , private authService: AuthService
+              // tslint:disable-next-line:align
+              , private http: HttpClient) {
     AOS.init();
-
+    this.http.get('assets/ProjectData.json').subscribe((data: any) => {
+      this.projectData = data;
+      this.pageTitle.setTitle(data.projectTitle);
+    });
   }
   ngOnInit(): void {
     this.authService.autoLogin();
     this.canonicalService.setCanonicalURL();
-    this.pageTitle.setTitle(this.title);
     this.metaService.addTags([
-      { name: 'keywords', content: 'Kfatafat online games' },
+      { name: 'keywords', content: 'sukanta hui' },
       { name: 'robots', content: 'index, follow' },
-      { name: 'author', content: 'kfatafat kolkata' },
+      { name: 'author', content: 'sukanta hui' },
       { name: 'date', content: '2021-05-25', scheme: 'YYYY-MM-DD' },
       { charset: 'UTF-8' },
-      { description: 'kfatafat⭐ORIGNAL WEBSITE ⭐ Today All Bazi Tips KOLKATA Fatafat Result Live Update. Kolkata Fatafat Result . कोलकाता फटाफट RESULT, Prediction the result and win, try your luck..\n' +
-          '‎Kolkata Fatafat · ‎OLD Kolkata  kFatafat Result · ‎Kolkata fun lucky number · ‎Kolkata FF FUN result since 1960' }
+      { description: 'This is a general website for any use' }
     ]);
 
 
